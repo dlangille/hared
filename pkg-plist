@@ -1,0 +1,2 @@
+bin/hare
+%%ETCDIR%%/hared.ini.sample
