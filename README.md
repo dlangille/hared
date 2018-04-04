@@ -20,3 +20,5 @@ make: stopped in /usr/ports/sysutils/hared
 ```
 
 I'm stuck...
+
+I took the build process from sysutils/phpfpm_exporter  ... I am not convinced it is proper.
