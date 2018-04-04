@@ -1,4 +1,4 @@
-# $FreeBSD: head/sysutils/py-hared/Makefile 465754 2018-03-27 21:06:15Z dvl $
+# $FreeBSD$
 
 PORTNAME=	hared
 DISTVERSION=	1.0-41
@@ -8,26 +8,29 @@ CATEGORIES=	sysutils
 MAINTAINER=	dvl@FreeBSD.org
 COMMENT=	Small Go server for inserting notications into mtqq
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	jpmens
-GH_PROJECT=	hared-hare
-
-GH_TUPLE=	eclipse:paho.mqtt.golang:d4f545e:paho_mqtt_golang/src/github.com/eclipse/paho.mqtt.golang
-
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		go
+USE_GITHUB=	yes
+# GH_ACCOUNT=	jpmens
+# GH_PROJECT=	hared-hare
+
+GH_TUPLE=	jpmens:hared-hare:e17cdc6 \
+		eclipse:paho.mqtt.golang:d4f545e:eclipse/paho.mqtt.golang \
+		golang:net:9dfe398:net/src/golang.org/x/net \
+		gorilla:websocket:7a8dacf:websocket/src/github.com/gorilla/websocket \
+		go-gcfg:gcfg:f02745a:gcfg/src/gopkg.in/gcfg.v1
 
 ETCDIR=		${PREFIX}/etc
 
-USES=		go
-
-GO_PKGNAME=	hared/daemon
-
+GO_PKGNAME=	github.com/${PORTNAME}/
 
 do-build:
-	@(cd ${GO_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GO_ENV} CGO_ENABLED=0 ${GO_CMD} build -o ${PORTNAME} ./cmd/${GH_PROJECT})
+	(cd ${GO_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GO_ENV} CGO_ENABLED=0 ${GO_CMD} build -o ${PORTNAME} ${GO_WRKSRC}/hared-hare-e17cdc6/daemon/hared.go)
 
-do-install:
-	${INSTALL_PROGRAM} ${GO_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+#do-install:
+#	${INSTALL_PROGRAM} ${GO_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
 #do-install:
 #	${INSTALL_PROGRAM} ${WRKSRC}/hare                     ${STAGEDIR}${PREFIX}/bin
