@@ -34,3 +34,18 @@ hared.go:14:5: cannot find package "gopkg.in/gcfg.v1" in any of:
 	/usr/local/go/src/gopkg.in/gcfg.v1 (from $GOROOT)
 	/root/go/src/gopkg.in/gcfg.v1 (from $GOPATH)
 ```
+
+Running the testport, I see:
+
+```
+root@111amd64-working:/wrkdirs/usr/ports/sysutils/hared/work # la -l
+total 20
+drwxr-xr-x  4 nobody  wheel   8 Apr  4 01:06 ./
+drwxr-xr-x  3 nobody  wheel   3 Apr  4 01:05 ../
+-rw-r--r--  1 nobody  wheel   0 Apr  4 01:06 .configure_done.hared._usr_local
+-rw-r--r--  1 nobody  wheel   0 Apr  4 01:05 .extract_done.hared._usr_local
+-rw-r--r--  1 nobody  wheel   0 Apr  4 01:05 .patch_done.hared._usr_local
+drwxr-xr-x  5 nobody  wheel  12 Apr  4 01:05 hared-hare-1.0-41-ge17cdc6/
+lrwxr-xr-x  1 nobody  wheel  66 Apr  4 01:05 paho.mqtt.golang-d4f545e@ -> hared-hare-1.0-41-ge17cdc6/src/github.com/eclipse/paho.mqtt.golang
+drwxr-xr-x  3 nobody  wheel   3 Apr  4 01:05 src/
+```
